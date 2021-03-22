@@ -7,6 +7,7 @@ Steps:
   https://github.com/24Mrityunjay/Pizza-App.git
 
 2.Do npm install
+
 3.Do npm start
 
 That's it
