@@ -79,7 +79,7 @@ class MenuItemList extends Component {
                                 <img
                                     src={data.img_url}
                                     alt="new"
-                                    width={280} height={150}
+                                    width={178} height={150}
                                 // className='imageShown'
                                 />
                             </div>
