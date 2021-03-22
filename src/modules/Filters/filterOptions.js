@@ -4,17 +4,12 @@ const FilterOptions = (props) => {
   return (
     <div className="row">
       <div className="col col-xs-3 col-md-3">
-        <label htmlFor="namefilter" className="pull-left">Name:</label>
-        <input name="namefilter" type="text" autoFocus placeholder="Search" className="inputBox" value={props.filterNameText ? props.filterNameText : ''} onChange={e => props.handleFilteration(e, 'name')} />
-      </div>
-      <div className="col col-xs-3 col-md-3">
-        <label htmlFor="categoryfilter" className="pull-left">Category:</label>
-        <select name="categoryfilter" className="inputBox" value={props.filterCategoryText ? props.filterCategoryText : ''} onChange={e => props.handleFilteration(e, 'category')}>
+        <label htmlFor="vegfilter" className="pull-left">Name:</label>
+        {/* <input name="namefilter" type="text" autoFocus placeholder="Search" className="inputBox" value={props.filterNameText ? props.filterNameText : ''} onChange={e => props.handleFilteration(e, 'name')} /> */}
+         <select name="vegfilter" className="inputBox" value={props.filterNameText ? props.filterNameText : ''} onChange={e => props.handleFilteration(e, 'isVeg')}>
           <option value="">{'All'}</option>
-          <option value="Burgers">{'Burgers'}</option>
-          <option value="Sandwitches">{'Sandwitches'}</option>
-          <option value="Pizzas">{'Pizzas'}</option>
-          <option value="Drinks">{'Drinks'}</option>
+          <option value="veg">{'Veg'}</option>
+          <option value="nonveg">{'Non-Veg'}</option>
         </select>
       </div>
       <div className="col col-xs-3 col-md-3">
@@ -32,11 +27,10 @@ const FilterOptions = (props) => {
         <label htmlFor="pricefilter" className="pull-left">Price:</label>
         <select name="pricefilter" className="inputBox" value={props.filterPriceText ? props.filterPriceText : ''} onChange={e => props.handleFilteration(e, 'price')}>
           <option value="">{'All'}</option>
-          <option value="0,100">{'₹0 - ₹100'}</option>
-          <option value="100,125">{'₹100 - ₹125'}</option>
-          <option value="125,150">{'₹125 - ₹150'}</option>
-          <option value="150,175">{'₹150 - ₹175'}</option>
-          <option value="175,">{'₹175+'}</option>
+          <option value="0,200">{'₹0 - ₹200'}</option>
+          <option value="200,300">{'₹200 - ₹300'}</option>
+          <option value="300,400">{'₹300 - ₹400'}</option>
+          <option value="400,">{'₹400+'}</option>
         </select>
       </div>
     </div>

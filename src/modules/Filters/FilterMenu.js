@@ -13,7 +13,6 @@ const initialstate = {
     filterPriceText: ''
 };
 class FilterMenu extends Component {
-
     constructor(props, context) {
         super(props, context);
         this.state = initialstate;
@@ -30,27 +29,20 @@ class FilterMenu extends Component {
 
     handleFilteration = (event, ops) => {
         const filterText = event.target.value;
-        let filterCategoryText = this.state.filterCategoryText;
         let filterRatingText = this.state.filterRatingText;
         let filterNameText = this.state.filterNameText;
         let filterPriceText = this.state.filterPriceText;
         let array = [...this.state.allItems] || [];
-        if (ops === 'category') {
-            filterCategoryText = filterText;
-        } else if (ops === 'rating') {
+        if (ops === 'rating') {
             filterRatingText = filterText;
         } else if (ops === 'price') {
             filterPriceText = filterText;
-        } else {
+        } else if (ops === 'isVeg') {
             filterNameText = filterText;
         }
         // category filter
         array = array.filter((obj) => {
             let ok = true;
-
-            if (filterCategoryText !== '') {
-                ok = (obj.categoryName == filterCategoryText);
-            }
 
             if (ok && filterRatingText !== '') {
                 ok = obj == filterRatingText;
@@ -58,11 +50,18 @@ class FilterMenu extends Component {
 
             if (ok && filterPriceText !== '') {
                 const finalPrice = this.calculatePrice(obj.price);
-                if(filterPriceText.split(",")[1])
-                {
-                    ok = obj.price > filterPriceText.split(",")[0] && (filterPriceText.split(",")[1] && obj.price <= filterPriceText.split(",")[1]) ;
-                }else{
-                    ok =  obj.price > filterPriceText.split(",")[0]
+                if (filterPriceText.split(",")[1]) {
+                    ok = obj.price > filterPriceText.split(",")[0] && (filterPriceText.split(",")[1] && obj.price <= filterPriceText.split(",")[1]);
+                } else {
+                    ok = obj.price > filterPriceText.split(",")[0]
+                }
+            }
+
+            if (ok && filterNameText !== '') {
+                if (filterNameText == 'veg') {
+                    ok = obj.isVeg;
+                } else if (filterNameText == 'nonveg') {
+                    ok = !obj.isVeg;
                 }
             }
 
@@ -70,7 +69,7 @@ class FilterMenu extends Component {
         });
         
         // set State
-        this.setState({ filterNameText, filterCategoryText, filterRatingText, filterPriceText, filteredItems: array });
+        this.setState({ filterNameText, filterRatingText, filterPriceText, filteredItems: array });
         this.props.filterItems(array);
     }
 
@@ -82,7 +81,6 @@ class FilterMenu extends Component {
     render() {
         return (
             <FilterOptions
-                filterCategoryText={this.state.filterCategoryText}
                 filterRatingText={this.state.filterRatingText}
                 filterNameText={this.state.filterNameText}
                 filterPriceText={this.state.filterPriceText}
