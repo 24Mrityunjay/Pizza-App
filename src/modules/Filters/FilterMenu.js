@@ -45,7 +45,7 @@ class FilterMenu extends Component {
             let ok = true;
 
             if (ok && filterRatingText !== '') {
-                ok = obj == filterRatingText;
+                ok = obj.rating == filterRatingText;
             }
 
             if (ok && filterPriceText !== '') {
