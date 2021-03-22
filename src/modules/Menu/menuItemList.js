@@ -5,16 +5,16 @@ import * as actions from '../Cart/action';
 import Modal from 'react-modal';
 import StarRatingComponent from 'react-star-rating-component';
 
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
-    }
-};
+// const customStyles = {
+//     content: {
+//         top: '50%',
+//         left: '50%',
+//         right: 'auto',
+//         bottom: 'auto',
+//         marginRight: '-50%',
+//         transform: 'translate(-50%, -50%)'
+//     }
+// };
 
 class MenuItemList extends Component {
     constructor(props) {
@@ -78,7 +78,7 @@ class MenuItemList extends Component {
                                 <img
                                     src={data.img_url}
                                     alt="new"
-                                    width={200} height={150}
+                                    width={280} height={150}
                                 // className='imageShown'
                                 />
                             </div>
