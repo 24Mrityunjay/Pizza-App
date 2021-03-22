@@ -5,22 +5,22 @@ import * as actions from '../Cart/action';
 import Modal from 'react-modal';
 import StarRatingComponent from 'react-star-rating-component';
 
-// const customStyles = {
-//     content: {
-//         top: '50%',
-//         left: '50%',
-//         right: 'auto',
-//         bottom: 'auto',
-//         marginRight: '-50%',
-//         transform: 'translate(-50%, -50%)'
-//     }
-// };
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    }
+};
 
 class MenuItemList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            modalIsOpen: true,
+            modalIsOpen: false,
             isChecked: false,
             items: ''
         };
@@ -40,13 +40,13 @@ class MenuItemList extends Component {
     }
 
     toggleChange = (index, event) => {
-        // this.setState({
-        //   isChecked: !this.state.isChecked,
-        // });
-        // if(event.target.checked === true){
-        //     const value = event.target.value;
-        // console.log(value)
-        // }
+        this.setState({
+          isChecked: !this.state.isChecked,
+        });
+        if(event.target.checked === true){
+            const value = event.target.value;
+        console.log(value)
+        }
         // let newItems = this.state.items.slice();
         // console.log( newItems[index],"sdfjksdgfjsdhfsdjfhjksh");
         // newItems[index].checked = !event.target[index].checked
@@ -57,6 +57,7 @@ class MenuItemList extends Component {
     render() {
         const { filteredItems } = this.props;
 
+        console.log(filteredItems,"filteredItemsfilteredItemsfilteredItemsfilteredItemsfilteredItems")
         return (<Fragment>
             {/* {menuItemMarkup} */}
             {filteredItems && filteredItems.map((data, index) => {
@@ -97,7 +98,7 @@ class MenuItemList extends Component {
                             <div className="addToCart" >
                                 <button className="addToCartButton" onClick={e => this.addToSelection(data)}>ADD</button>
                             </div>
-                            {/* <Modal
+                            <Modal
                                 isOpen={this.state.modalIsOpen}
                                 onRequestClose={this.modalChange}
                                 ariaHideApp={false}
@@ -136,7 +137,7 @@ class MenuItemList extends Component {
                                         </form>
                                     </div>
                                 </div>
-                            </Modal> */}
+                            </Modal>
                         </div>
                     </div>
                 )

@@ -49,33 +49,26 @@ class FilterMenu extends Component {
             let ok = true;
 
             if (filterCategoryText !== '') {
-                ok = (obj.categoryName === filterCategoryText);
+                ok = (obj.categoryName == filterCategoryText);
+            }
+
+            if (ok && filterRatingText !== '') {
+                ok = obj == filterRatingText;
+            }
+
+            if (ok && filterPriceText !== '') {
+                const finalPrice = this.calculatePrice(obj.price);
+                if(filterPriceText.split(",")[1])
+                {
+                    ok = obj.price > filterPriceText.split(",")[0] && (filterPriceText.split(",")[1] && obj.price <= filterPriceText.split(",")[1]) ;
+                }else{
+                    ok =  obj.price > filterPriceText.split(",")[0]
+                }
             }
 
             return ok;
         });
-        // other filters
-        array.forEach((obj, idx) => {
-            let filteredItems = obj.items.filter((item) => {
-                let ok = true;
-
-                if (ok && filterRatingText !== '') {
-                    ok = item.rating === filterRatingText;
-                }
-
-                if (ok && filterPriceText !== '') {
-                    const finalPrice = this.calculatePrice(item.price, item.discount);
-                    ok = (finalPrice > filterPriceText.split(",")[0] && (filterPriceText.split(",")[1] && finalPrice <= filterPriceText.split(",")[1]));
-                }
-
-                if (ok && filterNameText !== '') {
-                    ok = (item.name.toLowerCase().search(filterNameText.toLowerCase()) > -1);
-                }
-                return ok;
-            });
-            obj.items = filteredItems;
-            array[idx] = obj;
-        });
+        
         // set State
         this.setState({ filterNameText, filterCategoryText, filterRatingText, filterPriceText, filteredItems: array });
         this.props.filterItems(array);
